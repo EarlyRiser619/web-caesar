@@ -1,9 +1,9 @@
-from flask import flask
+from flask import Flask
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-forms = """
+form = """
     <!doctype html>
 
     <html>
@@ -26,16 +26,17 @@ forms = """
         </head>
         <body>
             <form action="/cypher" method="post">
-                <label for="rotate-by">
-                    <input type="text" id="rotate-by" name="rot">
+                <label for="rotate-by">Rotate By: 
+                    <input type="text" id="rotate-by" name="rot" value="0">
                 </label>
-                <input type="textarea" name="text">
-
+                <textarea name="text"></textarea>
+                <button type="submit">Submit Query</button>
+            </form>
         </body>
     </html>
     """
 
-@ app_route("/")
+@app.route("/")
 def index():
     return form 
 
